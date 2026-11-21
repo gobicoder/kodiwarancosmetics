@@ -119,3 +119,11 @@ p{margin:0 0 1em}
   .hero{grid-template-columns:1.1fr .9fr;gap:3rem}
   .hero-img-frame{margin-inline:0 0}
 }
+
+/* Hero floating chips */
+.hero-visual{position:relative;max-width:520px;margin-inline:auto}
+.float-chip{position:absolute;display:inline-flex;align-items:center;gap:.5rem;padding:.55rem .9rem;background:#fff;border:1px solid var(--line);border-radius:999px;box-shadow:var(--shadow);color:var(--royal);font-weight:600;font-size:.85rem}
+.chip-1{top:8%;left:.6rem}
+.chip-2{bottom:10%;right:.6rem}
+.fly-dot{position:fixed;z-index:400;width:16px;height:16px;border-radius:50%;background:var(--bright);box-shadow:0 0 0 4px rgba(0,128,200,.25);pointer-events:none}
+@media (min-width:900px){.hero-visual{margin-inline:0}}
