@@ -49,3 +49,36 @@ html.js .reveal.in{opacity:1;transform:none}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   html.js .reveal,.word{opacity:1;transform:none}
 }
+
+/* ---- Extra motion: 3D cards, shine, depth ---- */
+.tilt{position:relative}
+html.js .tilt.in{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));transition:transform .18s ease-out,box-shadow .3s ease,border-color .3s ease;transition-delay:0s;will-change:transform}
+.tilt.in:hover{--ty:-6px;box-shadow:0 22px 44px rgba(0,43,85,.16);border-color:#b9d3ea}
+.hero-visual.tilt{transform-style:preserve-3d}
+.hero-visual.tilt.in:hover{--ty:0px;box-shadow:none;border-color:transparent}
+.feature-card.tilt::after,.product-card.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,128,200,.15),transparent 55%);transition:opacity .3s}
+.tilt:hover::after{opacity:1}
+
+/* Hero chips: depth + gentle float */
+.float-chip{transform:translateZ(60px);animation:chipFloat 7s ease-in-out infinite}
+.chip-2{animation-delay:-3.5s}
+@keyframes chipFloat{50%{translate:0 -8px}}
+
+/* Button shine */
+.btn-primary,.btn-secondary{position:relative;overflow:hidden;isolation:isolate}
+.btn-primary::before,.btn-secondary::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%)}
+.btn-primary:hover::before,.btn-secondary:hover::before{transform:translateX(120%);transition:transform .9s var(--ease)}
+
+/* Feature icon: coin spin */
+.icon-circle{transition:transform .9s var(--ease)}
+.feature-card:hover .icon-circle{transform:perspective(300px) rotateY(360deg)}
+
+/* Section title underline draws in */
+.section-header h2::after{content:"";display:block;width:56px;height:3px;margin-top:.6rem;border-radius:3px;background:var(--grad)}
+html.js .section-header h2::after{transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .3s}
+html.js .section-header.in h2::after{transform:scaleX(1)}
+
+/* Leaves drift with scroll */
+.floating-leaf{translate:0 calc(var(--sy,0) * -.05px)}
+
+@media (prefers-reduced-motion:reduce){.float-chip{transform:none}.floating-leaf{translate:none}}
