@@ -1,0 +1,106 @@
+/* KODIWARAN — animation layer. Subtle, smooth, transform/opacity only. */
+:root{--ease:cubic-bezier(.22,.61,.36,1)}
+
+/* Scroll reveal (only hidden when JS is running) */
+html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+html.js .reveal.in{opacity:1;transform:none}
+
+/* Headline: one-time word-by-word entrance */
+.word{display:inline-block;opacity:0;transform:translateY(.35em);animation:wordIn .8s var(--ease) forwards;animation-delay:calc(var(--i,0) * 70ms + 150ms)}
+@keyframes wordIn{to{opacity:1;transform:none}}
+
+/* Navbar */
+.navbar{transition:box-shadow .3s ease}
+.navbar.scrolled{box-shadow:0 6px 24px rgba(0,43,85,.08)}
+.nav-links{transition:opacity .25s ease,transform .3s var(--ease),visibility .3s}
+.nav-links a::after{content:"";position:absolute;left:1rem;right:1rem;bottom:8px;height:2px;background:var(--bright);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+@media (max-width:767px){.nav-links a::after{display:none}}
+
+/* Buttons, cards */
+.btn-primary,.btn-secondary,.btn-outline,.icon-btn{transition:transform .3s var(--ease),box-shadow .3s ease,background-color .3s ease,border-color .3s ease,color .3s ease}
+.btn-primary:hover,.btn-secondary:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,56,120,.22)}
+.btn-primary:active,.btn-secondary:active,.btn-outline:active{transform:none}
+.feature-card,.product-card{transition:transform .4s var(--ease),box-shadow .4s ease,border-color .3s ease}
+.feature-card:hover,.product-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#b9d3ea}
+.product-media img{transition:transform .8s var(--ease)}
+.product-card:hover .product-media img{transform:scale(1.04)}
+.hero-img-frame img{transition:transform 1.2s var(--ease)}
+.hero-img-frame:hover img{transform:scale(1.03)}
+
+/* Cart drawer */
+.overlay{transition:opacity .3s ease,visibility .3s}
+.cart-drawer{transition:transform .4s var(--ease),visibility .4s}
+.badge.bump{animation:bump .4s var(--ease)}
+@keyframes bump{40%{transform:scale(1.25)}}
+
+/* Ambient background: very slow, low contrast */
+.blob-1{animation:drift 28s ease-in-out infinite alternate}
+.blob-2{animation:drift 34s ease-in-out infinite alternate-reverse}
+.floating-leaf{animation:float 12s ease-in-out infinite}
+.leaf-2{animation-duration:15s;animation-delay:-4s}
+.leaf-3{animation-duration:18s;animation-delay:-8s}
+@keyframes drift{to{transform:translate3d(24px,18px,0)}}
+@keyframes float{50%{transform:translateY(-10px) rotate(6deg)}}
+
+.scroll-progress{transform:scaleX(var(--p,0))}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  html.js .reveal,.word{opacity:1;transform:none}
+}
+
+/* ---- Extra motion: 3D cards, shine, depth ---- */
+.tilt{position:relative}
+html.js .tilt.in{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));transition:transform .18s ease-out,box-shadow .3s ease,border-color .3s ease;transition-delay:0s;will-change:transform}
+.tilt.in:hover{--ty:-6px;box-shadow:0 22px 44px rgba(0,43,85,.16);border-color:#b9d3ea}
+.hero-visual.tilt{transform-style:preserve-3d}
+.hero-visual.tilt.in:hover{--ty:0px;box-shadow:none;border-color:transparent}
+.feature-card.tilt::after,.product-card.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,128,200,.15),transparent 55%);transition:opacity .3s}
+.tilt:hover::after{opacity:1}
+
+/* Hero chips: depth + gentle float */
+.float-chip{transform:translateZ(60px);animation:chipFloat 7s ease-in-out infinite}
+.chip-2{animation-delay:-3.5s}
+@keyframes chipFloat{50%{translate:0 -8px}}
+
+/* Button shine */
+.btn-primary,.btn-secondary{position:relative;overflow:hidden;isolation:isolate}
+.btn-primary::before,.btn-secondary::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%)}
+.btn-primary:hover::before,.btn-secondary:hover::before{transform:translateX(120%);transition:transform .9s var(--ease)}
+
+/* Feature icon: coin spin */
+.icon-circle{transition:transform .9s var(--ease)}
+.feature-card:hover .icon-circle{transform:perspective(300px) rotateY(360deg)}
+
+/* Section title underline draws in */
+.section-header h2::after{content:"";display:block;width:56px;height:3px;margin-top:.6rem;border-radius:3px;background:var(--grad)}
+html.js .section-header h2::after{transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .3s}
+html.js .section-header.in h2::after{transform:scaleX(1)}
+
+/* Leaves drift with scroll */
+.floating-leaf{translate:0 calc(var(--sy,0) * -.05px)}
+
+@media (prefers-reduced-motion:reduce){.float-chip{transform:none}.floating-leaf{translate:none}}
+
+.filter-btn{transition:background-color .3s ease,color .3s ease,border-color .3s ease,transform .3s var(--ease)}
+.filter-btn:hover{transform:translateY(-2px)}
+.filter-btn.active:hover{color:#fff}
+
+/* About page */
+.badge-item{transition:transform .35s var(--ease),border-color .3s ease,box-shadow .3s ease}
+.badge-item:hover{transform:translateX(6px);border-color:#b9d3ea;box-shadow:var(--shadow)}
+.about-image img{transition:transform 1.2s var(--ease)}
+.about-image:hover img{transform:scale(1.04)}
+
+.contact-card{transition:transform .35s var(--ease),box-shadow .3s ease,border-color .3s ease}
+.contact-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#b9d3ea}
+.contact-card:hover .icon-circle{transform:perspective(300px) rotateY(360deg)}
+
+/* Product detail page */
+.poster-image-wrapper img{animation:posterIn 1.6s var(--ease) both}
+@keyframes posterIn{from{transform:scale(1.06)}to{transform:none}}
+.back-link i{transition:transform .3s var(--ease)}
+.back-link:hover i{transform:translateX(-4px)}
+.info-card,.skin-type-box,.ingredients-box{transition:transform .35s var(--ease),box-shadow .3s ease,border-color .3s ease}
+.info-card:hover,.skin-type-box:hover,.ingredients-box:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#b9d3ea}
