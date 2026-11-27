@@ -263,7 +263,7 @@ html.js .section-header.in h2::after{transform:scaleX(1)}
 .badge-item:hover{transform:translateX(6px);border-color:#b9d3ea;box-shadow:var(--shadow)}
 .about-image img{transition:transform 1.2s var(--ease)}
 .about-image:hover img{transform:scale(1.04)}
-/* Leaves drift with scroll */
-.floating-leaf{translate:0 calc(var(--sy,0) * -.05px)}
 
-@media (prefers-reduced-motion:reduce){.float-chip{transform:none}.floating-leaf{translate:none}}
+.contact-card{transition:transform .35s var(--ease),box-shadow .3s ease,border-color .3s ease}
+.contact-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#b9d3ea}
+.contact-card:hover .icon-circle{transform:perspective(300px) rotateY(360deg)}
