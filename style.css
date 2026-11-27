@@ -424,3 +424,20 @@ p{margin:0 0 1em}
   .about-grid{grid-template-columns:1.1fr .9fr;gap:3.5rem}
   .about-image{margin-inline:0}
 }
+
+/* About: single column text + contact & map */
+.about-text{max-width:760px;margin-inline:auto}
+.about-section{padding-bottom:clamp(2rem,5vw,3.5rem)}
+@media (min-width:768px){.about-badges{grid-template-columns:repeat(3,1fr)}.about-badges .badge-item{align-items:flex-start}}
+.contact-section{padding:clamp(3rem,7vw,5rem) var(--px);background:var(--ice)}
+.contact-grid{display:grid;gap:1.5rem}
+.contact-list{list-style:none;margin:0;padding:0;display:grid;gap:1rem;align-content:start}
+.contact-card{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.25rem;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
+.contact-card .icon-circle{flex:none;margin:0;width:46px;height:46px;font-size:1.05rem}
+.contact-card h3{font-size:1.05rem;margin:0 0 .2rem}
+.contact-card address{font-style:normal;color:var(--text);margin-bottom:.4rem}
+.contact-link{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;color:var(--royal);font-weight:600;text-decoration:none;overflow-wrap:anywhere}
+.contact-link:hover{color:var(--bright);text-decoration:underline}
+.map-frame{min-height:320px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#fff}
+.map-frame iframe{display:block;width:100%;height:100%;min-height:320px;border:0}
+@media (min-width:900px){.contact-grid{grid-template-columns:.9fr 1.1fr;gap:2rem}.map-frame,.map-frame iframe{min-height:420px}}
